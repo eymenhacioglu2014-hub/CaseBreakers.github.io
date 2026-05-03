@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Şifre</title>
+  <script>
+    function kontrol() {
+      var sifre = document.getElementById("sifre").value;
+
+      if (sifre === "1234") {
+        window.location.href = "https://site2.com";
+      } else {
+        alert("Yanlış şifre");
+      }
+    }
+  </script>
+</head>
+<body>
+  <input type="password" id="sifre" placeholder="Şifre gir">
+  <button onclick="kontrol()">Giriş</button>
+</body>
+</html>

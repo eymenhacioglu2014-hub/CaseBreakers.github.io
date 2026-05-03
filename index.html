@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<title>Giriş</title>
 <style>
 body {
   margin: 0;
@@ -15,32 +10,40 @@ body {
 }
 
 .box {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  padding: 30px;
-  border-radius: 15px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  padding: 40px 30px;
+  border-radius: 18px;
   text-align: center;
   color: white;
-  width: 250px;
+  width: 300px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+h2 {
+  margin-bottom: 15px;
 }
 
 input {
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 14px;
+  margin-top: 5px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
 }
 
 button {
-  margin-top: 15px;
-  padding: 10px;
+  margin-top: 12px;
+  padding: 12px;
   width: 100%;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   background: #4CAF50;
   color: white;
   cursor: pointer;
+  font-size: 15px;
 }
 
 button:hover {
@@ -48,48 +51,9 @@ button:hover {
 }
 
 .error {
-  color: red;
+  color: #ff4d4d;
   margin-top: 10px;
   display: none;
+  font-size: 14px;
 }
 </style>
-</head>
-<body>
-
-<div class="box">
-  <h2>Giriş Yap</h2>
-  <input type="password" id="pass" placeholder="Şifre gir">
-  <button onclick="check()">Giriş</button>
-  <div class="error" id="error">Yanlış şifre!</div>
-</div>
-
-<script>
-let attempts = 0;
-
-function check() {
-  const pass = document.getElementById("pass").value;
-  const error = document.getElementById("error");
-
-  if(pass === "1234") {
-    document.body.innerHTML = "<h1 style='color:white;text-align:center;'>Yükleniyor...</h1>";
-    setTimeout(() => {
-      window.location.href = "https://youtube.com/shorts/8mPfbMXPsqE?si=utj7Zamjxu6F1PFK";
-    }, 1000);
-  } else {
-    attempts++;
-    error.style.display = "block";
-
-    if(attempts >= 3) {
-      alert("Çok fazla deneme!");
-    }
-  }
-}
-
-// Enter ile giriş
-document.getElementById("pass").addEventListener("keypress", function(e){
-  if(e.key === "Enter") check();
-});
-</script>
-
-</body>
-</html>

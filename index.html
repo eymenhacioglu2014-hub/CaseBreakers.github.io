@@ -1,24 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <title>Şifre</title>
+<meta charset="UTF-8">
+<title>Giriş</title>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #1e1e2f, #3a3a6a);
+  font-family: Arial;
+}
+
+.box {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  color: white;
+  width: 250px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+}
+
+button {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #45a049;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+  display: none;
+}
+</style>
 </head>
 <body>
 
-<input type="password" id="sifre" placeholder="Şifre gir">
-<button onclick="kontrol()">Giriş</button>
+<div class="box">
+  <h2>Giriş Yap</h2>
+  <input type="password" id="pass" placeholder="Şifre gir">
+  <button onclick="check()">Giriş</button>
+  <div class="error" id="error">Yanlış şifre!</div>
+</div>
 
 <script>
-function kontrol() {
-  var sifre = document.getElementById("sifre").value;
+let attempts = 0;
 
-  if (sifre === "1234") {
-    window.location.href = "https://youtube.com/shorts/8mPfbMXPsqE?si=utj7Zamjxu6F1PFK";
+function check() {
+  const pass = document.getElementById("pass").value;
+  const error = document.getElementById("error");
+
+  if(pass === "1234") {
+    document.body.innerHTML = "<h1 style='color:white;text-align:center;'>Yükleniyor...</h1>";
+    setTimeout(() => {
+      window.location.href = "https://youtube.com/shorts/8mPfbMXPsqE?si=utj7Zamjxu6F1PFK";
+    }, 1000);
   } else {
-    alert("Yanlış şifre");
+    attempts++;
+    error.style.display = "block";
+
+    if(attempts >= 3) {
+      alert("Çok fazla deneme!");
+    }
   }
 }
+
+// Enter ile giriş
+document.getElementById("pass").addEventListener("keypress", function(e){
+  if(e.key === "Enter") check();
+});
 </script>
 
 </body>

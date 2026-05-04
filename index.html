@@ -1,95 +1,26 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Giriş</title>
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #1e1e2f, #3a3a6a);
-  font-family: Arial;
-}
-
-.box {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  padding: 30px;
-  border-radius: 15px;
-  text-align: center;
-  color: white;
-  width: 250px;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 8px;
-}
-
-button {
-  margin-top: 15px;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  border-radius: 8px;
-  background: #4CAF50;
-  color: white;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #45a049;
-}
-
-.error {
-  color: red;
-  margin-top: 10px;
-  display: none;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Şifre</title>
 </head>
 <body>
 
-<div class="box">
-  <h2>Giriş Yap</h2>
-  <input type="password" id="pass" placeholder="Şifre gir">
-  <button onclick="check()">Giriş</button>
-  <div class="error" id="error">Yanlış şifre!</div>
-</div>
+  <h2>Şifre gir</h2>
+  <input type="password" id="sifre" placeholder="Şifre">
+  <button onclick="kontrol()">Giriş</button>
 
-<script>
-let attempts = 0;
+  <script>
+    function kontrol() {
+      var sifre = document.getElementById("sifre").value;
 
-function check() {
-  const pass = document.getElementById("pass").value;
-  const error = document.getElementById("error");
-
-  if(pass === "1234") {
-    document.body.innerHTML = "<h1 style='color:white;text-align:center;'>Yükleniyor...</h1>";
-    setTimeout(() => {
-      window.location.href = "https://drive.google.com/drive/folders/1kBr6eP3-L6_xH--hUTeuUF-hiBTcUPa4";
-    }, 1000);
-  } else {
-    attempts++;
-    error.style.display = "block";
-
-    if(attempts >= 3) {
-      alert("Çok fazla deneme!");
+      if (sifre === "1234") {
+        window.location.href = "https://drive.google.com/drive/folders/1kBr6eP3-L6_xH--hUTeuUF-hiBTcUPa4";
+      } else {
+        alert("Yanlış şifre");
+      }
     }
-  }
-}
-
-// Enter ile giriş
-document.getElementById("pass").addEventListener("keypress", function(e){
-  if(e.key === "Enter") check();
-});
-</script>
+  </script>
 
 </body>
 </html>

@@ -1,1 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Giriş Paneli</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e1e2f, #2c3e50);
+    }
 
+    .box {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      text-align: center;
+      width: 280px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #2c3e50;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #1a252f;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <h2>Giriş Yap</h2>
+    <input type="password" id="sifre" placeholder="Şifre">
+    <button onclick="kontrol()">Giriş</button>
+    <div class="error" id="error">Yanlış şifre</div>
+  </div>
+
+  <script>
+    function kontrol() {
+      var sifre = document.getElementById("sifre").value;
+      var error = document.getElementById("error");
+
+      if (sifre === "AYMNTAE") {
+        window.location.href = "https://drive.google.com/drive/folders/1A05GbJgagv8az3twXLJ3SYXRHaWsiliz?usp=sharing";
+      } else {
+        error.style.display = "block";
+      }
+    }
+
+    document.getElementById("sifre").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") {
+        kontrol();
+      }
+    });
+  </script>
+
+</body>
+</html>

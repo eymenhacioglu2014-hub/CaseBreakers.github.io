@@ -7,7 +7,7 @@
 <title>Loading...</title>
 
 <style>
-html, body{
+html,body{
     margin:0;
     padding:0;
     width:100%;
@@ -22,85 +22,79 @@ html, body{
     left:0;
     width:100vw;
     height:100vh;
-    object-fit:cover; /* tam ekran */
-    display:none;
-}
-
-#start{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    padding:20px 40px;
-    font-size:25px;
-    border:none;
-    border-radius:15px;
-    cursor:pointer;
+    object-fit:cover;
+    background:black;
 }
 
 #closeBtn{
     position:fixed;
     top:20px;
     right:20px;
-    padding:15px 25px;
-    font-size:20px;
+    padding:14px 22px;
+    font-size:18px;
     border:none;
     border-radius:12px;
     background:red;
     color:white;
-    cursor:pointer;
+    z-index:9999;
     display:none;
-    z-index:999;
 }
 </style>
 </head>
 <body>
 
-<button id="start">Videoyu Aç</button>
-
-<video id="video" playsinline>
+<video
+id="video"
+autoplay
+playsinline
+webkit-playsinline
+>
     <source src="video.mp4" type="video/mp4">
 </video>
 
-<button id="closeBtn" onclick="closeVideo()">Kapat</button>
+<button id="closeBtn">Kapat</button>
 
 <script>
-const startBtn = document.getElementById("start");
 const video = document.getElementById("video");
 const closeBtn = document.getElementById("closeBtn");
 
-startBtn.onclick = async () => {
+// sayfa açılınca tam ekran
+window.onload = async () => {
 
-    startBtn.style.display = "none";
-    video.style.display = "block";
+    try{
 
-    // tam ekran
-    if(video.requestFullscreen){
-        video.requestFullscreen();
+        // tam ekran
+        if(document.documentElement.requestFullscreen){
+            await document.documentElement.requestFullscreen();
+        }
+
+        // sesi aç
+        video.volume = 1.0;
+
+        // videoyu oynat
+        await video.play();
+
+    }catch(e){
+        console.log(e);
     }
 
-    // sesiyle oynat
-    video.volume = 1.0;
-
-    await video.play();
-
-    // 6 saniye sonra kapatma tuşu gelsin
-    setTimeout(() => {
+    // 6 saniye sonra kapatma tuşu
+    setTimeout(()=>{
         closeBtn.style.display = "block";
-    }, 6000);
+    },6000);
 };
 
-function closeVideo(){
+// kapat
+closeBtn.onclick = () => {
+
     video.pause();
 
     if(document.fullscreenElement){
         document.exitFullscreen();
     }
 
-    video.style.display = "none";
-    closeBtn.style.display = "none";
-    startBtn.style.display = "block";
-}
+    document.body.innerHTML = "";
+};
 </script>
 
 </body>

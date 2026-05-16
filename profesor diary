@@ -1,0 +1,106 @@
+# index.html
+
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Files</title>
+
+  <style>
+    body {
+      background: #0f0f0f;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 500px;
+      background: #1b1b1b;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.08);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .file {
+      background: #262626;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 12px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 10px;
+      background: white;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Secure Files</h1>
+
+  <div class="file">
+    <h3>doc1m</h3>
+    <input type="password" id="pass1" placeholder="Şifre gir">
+    <button onclick="openFile('AYMNTAE', 'pass1', 'doc1.pdf')">Open</button>
+  </div>
+
+  <div class="file">
+    <h3>doc2m</h3>
+    <input type="password" id="pass2" placeholder="Şifre gir">
+    <button onclick="openFile('Keops', 'pass2', 'doc2.pdf')">Open</button>
+  </div>
+
+  <div class="file">
+    <h3>doc3m</h3>
+    <input type="password" id="pass3" placeholder="Şifre gir">
+    <button onclick="openFile('1382611', 'pass3', 'doc3.pdf')">Open</button>
+  </div>
+
+  <div class="file">
+    <h3>mike.files</h3>
+    <button onclick="window.open('mike.pdf')">Open</button>
+  </div>
+</div>
+
+<script>
+function openFile(correctPassword, inputId, fileName) {
+  const enteredPassword = document.getElementById(inputId).value;
+
+  if (enteredPassword === correctPassword) {
+    window.open(fileName);
+  } else {
+    alert('Wrong password');
+  }
+}
+</script>
+
+</body>
+</html>
